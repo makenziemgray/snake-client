@@ -1,7 +1,7 @@
-// Stores the active TCP connection object
+// input.js
+
 let connection;
 
-// setup interface to handle user input from stdin
 const setupInput = function (conn) {
   connection = conn;
 
@@ -15,25 +15,22 @@ const setupInput = function (conn) {
   return stdin;
 };
 
-// This function handles user key input
 const handleUserInput = function (key) {
   if (key === '\u0003') {
-    process.exit(); // Exit on Ctrl+C
+    process.exit(); // Ctrl + C
   }
 
-  // WASD Movement
-  if (key === 'w') {
-    connection.write("Move: up");
-  }
-  if (key === 'a') {
-    connection.write("Move: left");
-  }
-  if (key === 's') {
-    connection.write("Move: down");
-  }
-  if (key === 'd') {
-    connection.write("Move: right");
-  }
+  // Movement keys
+  if (key === 'w') connection.write("Move: up");
+  if (key === 'a') connection.write("Move: left");
+  if (key === 's') connection.write("Move: down");
+  if (key === 'd') connection.write("Move: right");
+
+  // Say keys
+  if (key === 'q') connection.write("Say: Hello!");
+  if (key === 'e') connection.write("Say: Zoom!");
+  if (key === 'z') connection.write("Say: ssssssss...");
+  if (key === 'x') connection.write("Say: I’m coming!");
 };
 
 module.exports = { setupInput };
